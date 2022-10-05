@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./www:/var/www:ro
+      - ./nginx/conf:/etc/nginx/conf.d:ro
+      - ./nginx/log:/var/log/nginx
+    container_name: nginx_server
