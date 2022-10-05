@@ -1,0 +1,4 @@
+192.168.208.1 - - [05/Oct/2022:00:17:23 +0000] "GET / HTTP/1.1" 200 810 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0" "-"
+192.168.208.1 - - [05/Oct/2022:00:17:23 +0000] "GET /style.css HTTP/1.1" 200 944 "http://localhost:8080/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0" "-"
+192.168.208.1 - - [05/Oct/2022:00:17:23 +0000] "GET /script.js HTTP/1.1" 200 505 "http://localhost:8080/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0" "-"
+192.168.208.1 - - [05/Oct/2022:00:17:23 +0000] "GET /favicon.ico HTTP/1.1" 200 318 "http://localhost:8080/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0" "-"
