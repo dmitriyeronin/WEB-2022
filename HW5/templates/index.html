@@ -1,0 +1,23 @@
+{{ define "index" }}
+
+{{ template "header" }}
+
+<main>
+  <h1>Все записи</h1>
+  {{ range . }}
+  <div>
+    <h2>{{ .Title }}</h2>
+    <p>{{ .Text }}</p>
+  </div>
+  {{ else }}
+  <p>Нет ни одной записи...</p>
+  {{ end }}
+
+  <p>
+    <a href="/new_article">Добавить пост</a>
+  </p>
+</main>
+
+{{ template "footer" }}
+
+{{ end }}
