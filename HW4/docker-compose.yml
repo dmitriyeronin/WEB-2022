@@ -1,0 +1,8 @@
+version: '3.9'
+
+services:
+  website:
+    build: ./
+    command: ./website
+    network_mode: host
+    container_name: website
