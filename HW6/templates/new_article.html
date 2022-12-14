@@ -1,0 +1,16 @@
+{{ define "new_article" }}
+
+{{ template "header" }}
+
+<main>
+  <h1>Новая запись</h1>
+  <form action="/save_article" method="post">
+    <input type="text" name="title" id="title" placeholder="Введите название"><br>
+    <textarea name="article_text" id="article_text" placeholder="Введите текст"></textarea><br>
+    <button>Сохранить</button>
+  </form>
+</main>
+
+{{ template "footer" }}
+
+{{ end }}
