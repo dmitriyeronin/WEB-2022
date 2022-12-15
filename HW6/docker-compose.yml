@@ -1,0 +1,63 @@
+version: '3.9'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    container_name: zookeeper
+    hostname: zookeeper
+
+  kafka:
+    image: wurstmeister/kafka:latest
+    ports:
+      - "9092:9092"
+    container_name: kafka
+    hostname: kafka
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_CREATE_TOPICS: "Generated:1:1,Solved:1:1,Unsolved:1:1"
+      KAFKA_DELETE_TOPIC_ENABLE: "true"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - zookeeper
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    container_name: redis
+    hostname: redis
+
+  website:
+    build:
+      dockerfile: WebsiteDockerfile
+      context: .
+    command: sh -c "sleep 20 && ./website"
+    ports:
+      - "8081:8081"
+    depends_on:
+      - kafka
+      - redis
+    links:
+      - kafka
+      - redis
+    healthcheck:
+      test:  curl --fail http://website:8081/healthcheck || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  consumer:
+    build:
+      dockerfile: ConsumerDockerfile
+      context: .
+    command: sh -c "sleep 20 && ./consumer"
+    depends_on:
+      - kafka
+      - redis
+    links:
+      - kafka
+      - redis
